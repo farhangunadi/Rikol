@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# RIKOL (caRI buKu OnLine)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Rikol merupakan website yang menyajikan informasi seputar buku yang dijual di Google Books Store yang mana nantinya akan di implementasikan menggunakan konsep semantik web dengan menggunakan platform website.
 
 ## Available Scripts
 
