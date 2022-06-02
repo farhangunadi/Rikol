@@ -14,13 +14,13 @@ function Navbar() {
         <Link to="/" className='home'>
           <li>Home</li>
         </Link>
-        <Link to="/" className='guide'>
+        <Link to="/advanced" className='advanced'>
+          <li>Smart Search</li>
+        </Link>
+        <Link to="/guide" className='guide'>
           <li>Guide</li>
         </Link>
-        <Link to="/" className='contact'>
-          <li>Contacts</li>
-        </Link>
-        <Link to="/" className='about'>
+        <Link to="/about" className='about'>
           <li>About</li>
         </Link>
       </ul>

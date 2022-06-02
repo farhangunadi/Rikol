@@ -39,7 +39,7 @@
 
 .home,
 .guide,
-.contact,
+.advanced,
 .about {
     text-decoration: none;
     color: #ffffff;
@@ -51,7 +51,7 @@
 
 .home :hover,
 .guide :hover,
-.contact :hover,
+.advanced :hover,
 .about :hover {
     color: #d1d1ff;
 }
@@ -83,7 +83,7 @@
     }
     .home,
     .guide,
-    .contact,
+    .advanced,
     .about {
         color: #ffffff;
         text-align: center;
@@ -93,7 +93,7 @@
     }
     .home :hover,
     .guide :hover,
-    .contact :hover,
+    .advanced :hover,
     .about :hover {
         background-color: #5858ff;
         color: white;
