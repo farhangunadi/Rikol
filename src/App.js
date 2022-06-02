@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import LandingPage from './components/LandingPage';
 import Navbar from './components/Navbar';
+import Filter_search from './components/Show Data/FilterSearch';
 import Home from './components/Show Data/Home';
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
      <Navbar />
      <Routes>
        <Route path="/" element={<Home />}/>
+       <Route path="/advanced" element={<Filter_search />}/>
      </Routes>
    </Router>
   );

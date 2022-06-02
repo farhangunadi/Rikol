@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import qs from 'qs';
 import './../LandingPage.css';
-import Content from './../CardCompt';
+import Content from '../CardCompt';
 
 //fungsi untul effect scroll
 const scrollToSection = (flag) => {
@@ -16,8 +16,8 @@ const scrollToSection = (flag) => {
   });
 };
 
-function Home() {
-    //inisialisasi variable data
+function FilterSearch() {
+  //inisialisasi variable data
     const [value, setValue] = useState({
         codes: [],
         input: "",
@@ -30,14 +30,10 @@ function Home() {
         page_count: "",
         price: "",
     });
-
-    //inisialisasi state awal untuk searching dan search input
     const [searching, setSearching] = useState(false);
-    const [statusInput, setStatusInput] = useState(false);
 
-    //fungsi getData untuk mengambil data dari url
-    const getData = async () => {
-        const BASE_URL = "http://localhost:3030/rikolDataset/query"; //url fuseki
+    const getDataByFilter = async () => {
+      const BASE_URL = "http://localhost:3030/rikolDataset/query"; //url fuseki
 
         const headers = {
             Accept: "application/sparql-results+json,*/*;q=0.9",
@@ -61,23 +57,22 @@ function Home() {
                         gb:page_count ?page_count ; 
                         gb:price ?price .
                     
-                    FILTER (
-                    regex(?id, "${value.input}", "i") ||
-                    regex(?title, "${value.input}", "i") ||
-                    regex(?author, "${value.input}", "i") ||
-                    regex(?publisher, "${value.input}", "i") ||
-                    regex(?category, "${value.input}", "i") ||
-                    regex(?language, "${value.input}", "i") ||
-                    regex(?published_date, "${value.input}", "i") ||
-                    regex(?page_count, "${value.input}", "i") ||
-                    regex(?price, "${value.input}", "i")
-                    )
-            }`,
+                    FILTER contains(lcase(str(?title)), lcase(str("${
+                      value.title ? value.title : ""
+                    }")))
+                    FILTER contains(lcase(str(?category)), lcase(str("${
+                      value.category ? value.category : ""
+                    }")))
+                    FILTER contains(lcase(str(?language)), lcase(str("${
+                      value.language ? value.language : ""
+                    }")))
+                    FILTER contains(lcase(str(?price)), lcase(str("${
+                      value.price ? value.price : ""
+                    }")))
+            } ORDER BY ASC (?title)`,
         };
 
         setSearching(true);
-        setStatusInput(true);
-        document.getElementById('myInput').value = '';
         scrollToSection("codes");
 
         try {
@@ -101,60 +96,6 @@ function Home() {
             console.error(err);
         }
     };
-
-    const getAllData = async () => {
-        const BASE_URL = "http://localhost:3030/rikolDataset/query"; //url fuseki
-
-        const headers = {
-            Accept: "application/sparql-results+json,*/*;q=0.9",
-            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        };
-
-        //membuat varibel untuk menampung query get data
-        const queryData = {
-            query: `
-            PREFIX gb: <https://play.google.com/store/#>
-            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-            SELECT ?title ?author ?publisher ?category ?language ?published_date ?page_count ?price
-            WHERE
-            {
-                    ?id gb:title ?title ;
-                        gb:author ?author ; 
-                        gb:publisher ?publisher ; 
-                        gb:language ?language ; 
-                        gb:published_date ?published_date ; 
-                        gb:page_count ?page_count ; 
-                        gb:price ?price ;
-                        gb:category ?category .
-            }ORDER BY ASC(?title)`,
-        };
-
-        setStatusInput(false);
-        scrollToSection("codes");
-
-        try {
-            const { data } = await axios(BASE_URL, {
-                method: "POST",
-                headers,
-                data: qs.stringify(queryData),
-            });
-            console.log(data);
-
-            //convert data
-            const formatted_data = data.results.bindings.map((code, index) => 
-            formatter(code, index)
-            );
-            console.log(formatted_data);
-
-            setValue({
-                ...value,
-                codes: formatted_data,
-            });
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
     const formatter = (codes, index) => {
         return {
             id: index,
@@ -168,14 +109,30 @@ function Home() {
             price: codes.price.value,
         };
     };
-
-    const handleChange = (event) => {
-        setValue({
+    const handleChangeTitle = (event) => {
+      setValue({
         ...value,
-        input: event.target.value,
-        });
+        title: event.target.value,
+      });
     };
-
+    const handleChangeCategory = (event) => {
+      setValue({
+        ...value,
+        category: event.target.value,
+      });
+    };
+    const handleChangeLanguage = (event) => {
+      setValue({
+        ...value,
+        language: event.target.value,
+      });
+    };
+    const handleChangePrice = (event) => {
+      setValue({
+        ...value,
+        price: event.target.value,
+      });
+    };
     const content = value.codes.map((code) => (
         <Content 
             id={code.id}
@@ -189,38 +146,63 @@ function Home() {
             price={code.price}
         />
     ));
-    return ( 
+    function showKeyword () {
+      return([
+        value.title !== "" ? (<h3 className='keyword-text'>"Title : " {value.title} "</h3>):(<></>),
+        value.category !== "" ? (<h3 className='keyword-text'>"Category : " {value.category} "</h3>):(<></>),
+        value.language !== "" ? (<h3 className='keyword-text'>"Language : " {value.language} "</h3>):(<></>),
+        value.price !== "" ? (<h3 className='keyword-text'>"Price : $" {value.price} "</h3>):(<></>),
+      ])
+    }
+  return (
     <div className="large-container">
         <div className="container">
             <div className="home" id="home">
-                <h1 className='title'>Find complete information about books with the help of semantic technology</h1>
-                <div className="search-wrapper">
-                    <div className="search_box">
-                        <input 
-                        id='myInput'
-                        type="text"
-                        className="input"
-                        placeholder="search..."
-                        setvalue={value.input}
-                        onChange={handleChange}
-                        required="required"
-                        />
+                <h1 className='title'>Advanced search to find complete information about books with the help of semantic technology</h1>
+                <div className="filter">
+                    <input                      
+                    type="text"
+                    className="inputFilter"
+                    placeholder='Title'
+                    setValue={value.title}
+                    onChange={handleChangeTitle}/>
+                    <div className="grid">
+                    <select
+                    className="dropdown-select"
+                    setValue={value.category}
+                    onChange={handleChangeCategory}
+                    >
+                      <option value="">Category</option>
+                      <option value="Fiction">Fiction</option>
+                      <option value="Fantasy">Fantasy</option>
+                      <option value="Epic">Epic</option>
+                      <option value="Biography">Biography</option>
+                      <option value="Games">Games</option>
+                      <option value="Comics">Comics</option>
+                      <option value="Mystery">Mystery</option>
+                      <option value="Mythical">Mythical</option>
+                      <option value="General">General</option>
+                    </select>
+                    <select
+                    className="dropdown-select"
+                    setValue={value.language}
+                    onChange={handleChangeLanguage}
+                    >
+                      <option value="">Laguange</option>
+                      <option value="English">English</option>
+                      <option value="Other">Other</option>
+                    </select>
                     </div>
-                    <div className="button-wrapper-get-all">
-                        <button        
+                </div>
+                <div className="button-wrapper-get-all">
+                      <button        
                         type="button"
                         value="Search"
-                        onClick={getData} 
+                        onClick={getDataByFilter} 
                         className='card-btn'>Search</button>
-                        <button        
-                        type="button"
-                        value="Search"
-                        onClick={getAllData} 
-                        className='btn-get-all'>Get all data</button>
-                        <Link to="/advanced" className='advSearch'>
-                            <button className='btn-adv-src'>Go to advanced search</button>
-                        </Link>    
-                    </div>
+                      <Link to="/" className='advSearch'>
+                            <button className='btn-adv-src'>Go to basic search</button>
+                      </Link>    
                 </div>
             </div>
         </div>
@@ -254,11 +236,8 @@ function Home() {
                                     return (
                                     <div>
                                         <h3 className="result2-data ">Result : {content.length} data</h3>
-                                        {
-                                        statusInput === true ?(<h3 className="result2-data ">Keyword : " {value.input} "</h3>
-                                        ):(<></>)
-                                        }
-                                        
+                                        <h3 className="result2-data ">Keyword : </h3>
+                                        {showKeyword()}
                                         {content}</div>);
                                 }
                             })()
@@ -267,7 +246,7 @@ function Home() {
                 </div>
             </div>
     </div>
-    )
+  )
 }
 
-export default Home
+export default FilterSearch

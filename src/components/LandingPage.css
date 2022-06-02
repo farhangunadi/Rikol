@@ -10,6 +10,7 @@
     width: 100%;
     height: 100%;
     padding: 1rem;
+    padding-bottom: 100px;
 }
 
 .home {
@@ -53,15 +54,16 @@
     border: none;
     font-size: 18px;
     box-shadow: 0px 9.77778px 47.6667px 1.22222px rgba(2, 47, 70, 0.15);
+    color: #001868;
 }
 
 .home .search-wrapper .search_box .input:focus {
-    outline: #809dff;
+    outline: #002088;
 }
 
 .filter {
     width: 70%;
-    margin: 50px auto;
+    margin: 35px auto;
     background-color: #809dff;
     border-radius: 10px;
 }
@@ -80,15 +82,64 @@
     border-radius: 5px;
     border: none;
     font-size: 12px;
+    color: #001868;
 }
 
 .filter .grid .inputFilter:focus {
-    outline: #809dff;
+    outline: #153499;
 }
 
 .button-wrapper {
     text-decoration: none;
-    margin: 53px auto;
+    margin: 35px auto;
+}
+
+.button-wrapper-get-all {
+    text-decoration: none;
+    margin: 10px auto;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: auto auto auto;
+    /* grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr)); */
+    align-items: start;
+}
+
+.button-wrapper-get-all .card-btn {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    text-align: center;
+    color: #3363ff;
+    background-color: #d8e0fd;
+    border: none;
+    border-radius: 0.4rem;
+    transition: 0.2s;
+    cursor: pointer;
+    letter-spacing: 0.1rem;
+}
+
+.advSearch {
+    text-decoration: none;
+}
+
+.button-wrapper-get-all .btn-get-all,
+.button-wrapper-get-all .btn-adv-src {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    text-align: center;
+    color: #3a5fda;
+    background-color: #fbfbfb;
+    border-color: #a4b9ff;
+    border-style: ridge;
+    border-radius: 0.4rem;
+    transition: 0.2s;
+    cursor: pointer;
+    letter-spacing: 0.1rem;
 }
 
 .button-wrapper .card-btn {
@@ -108,6 +159,21 @@
 }
 
 .button-wrapper .card-btn:hover,
-.button-wrapper .card-btn:active {
-    background-color: #c3cffc;
+.button-wrapper .card-btn:active,
+.button-wrapper-get-all button:hover,
+.button-wrapper-get-all button :active {
+    background-color: #3c5ccf;
+}
+
+.codes {
+    margin: 30px auto;
+    width: 70%;
+}
+
+.code-list {
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0px 9.77778px 47.6667px 1.22222px rgba(2, 47, 70, 0.15);
 }

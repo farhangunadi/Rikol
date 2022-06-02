@@ -5,6 +5,7 @@
 # Books
 rdf:b001
     gb:title "Attack on Titan: Volume 13" ;
+    gb:category "Fiction" ;
     gb:author "Hajime Isayama" ;
     gb:language "English" ;
     gb:publisher "Kodansha Comics" ;
@@ -14,6 +15,7 @@ rdf:b001
 
 rdf:b002
     gb:title "Antiques Roadkill: A Trash 'n' Treasures Mystery" ;
+    gb:category "Mystery" ;
     gb:author "Barbara Allan" ;
     gb:language "English" ;
     gb:publisher "Kensington Publishing Corp." ;
@@ -23,6 +25,7 @@ rdf:b002
 
 rdf:b003
     gb:title "The Art of Super Mario Odyssey" ;
+    gb:category "Mystery" ;
     gb:author "Nintendo" ;
     gb:language "English" ;
     gb:publisher "Dark Horse Comics" ;
@@ -32,6 +35,7 @@ rdf:b003
 
 rdf:b004
     gb:title "Getting Away Is Deadly: An Ellie Avery Mystery" ;
+    gb:category "Mystery" ;
     gb:author "Sara Rosett" ;
     gb:language "English" ;
     gb:publisher "Kensington Publishing Corp." ;
@@ -41,6 +45,7 @@ rdf:b004
 
 rdf:b005
     gb:title "The Painted Man (The Demon Cycle, Book 1)" ;
+    gb:category "Fantasy" ;
     gb:author "Peter V. Brett" ;
     gb:language "English" ;
     gb:publisher "HarperCollins UK" ;
@@ -50,6 +55,7 @@ rdf:b005
 
 rdf:b006
     gb:title "A Feast for Crows (A Song of Ice and Fire, Book 4)" ;
+    gb:category "Fantasy" ;
     gb:author "George R.R. Martin" ;
     gb:language "English" ;
     gb:publisher "HarperCollins UK" ;
@@ -59,6 +65,7 @@ rdf:b006
 
 rdf:b007
     gb:title "God of War: The Official Novelization" ;
+    gb:category "Fiction" ;
     gb:author "J.M. Barlog" ;
     gb:language "English" ;
     gb:publisher "Titan Books" ;
@@ -68,6 +75,7 @@ rdf:b007
 
 rdf:b008
     gb:title "Edgedancer: From the Stormlight Archive" ;
+    gb:category "Epic" ;
     gb:author "Brandon Sanderson" ;
     gb:language "English" ;
     gb:publisher "Tor Books" ;
@@ -77,6 +85,7 @@ rdf:b008
 
 rdf:b009
     gb:title "Blood, Sweat, and Pixels: The Triumphant, Turbulent Stories Behind How Video Games Are Made" ;
+    gb:category "Games" ;
     gb:author "Jason Schreier" ;
     gb:language "English" ;
     gb:publisher "Games &amp, Activities , Video &amp, Electronic" ;
@@ -86,6 +95,7 @@ rdf:b009
 
 rdf:b010
     gb:title "Twas The Nightshift Before Christmas: Festive hospital diaries from the author of million-copy hit This is Going to Hurt" ;
+    gb:category "Biography" ;
     gb:author "Adam Kay" ;
     gb:language "English" ;
     gb:publisher "Pan Macmillan" ;
@@ -95,6 +105,7 @@ rdf:b010
 
 rdf:b011
     gb:title "Sword of Destiny: Witcher 2: Tales of the Witcher" ;
+    gb:category "Mythical" ;
     gb:author "Andrzej Sapkowski" ;
     gb:language "English" ;
     gb:publisher "Hachette UK" ;
@@ -104,6 +115,7 @@ rdf:b011
 
 rdf:b012
     gb:title "The Mysterious Affair at Styles (Poirot)" ;
+    gb:category "General" ;
     gb:author "Agatha Christie" ;
     gb:language "English" ;
     gb:publisher "HarperCollins UK" ;
@@ -113,6 +125,7 @@ rdf:b012
 
 rdf:b013
     gb:title "Deadpool Kills the Marvel Universe" ;
+    gb:category "Comics" ;
     gb:author "Cullen Bunn" ;
     gb:language "English" ;
     gb:publisher "Marvel Entertainment" ;
@@ -122,6 +135,7 @@ rdf:b013
 
 rdf:b014
     gb:title "Crossroads of Twilight: Book Ten of 'The Wheel of Time'" ;
+    gb:category "Fiction" ;
     gb:author "Robert Jordan" ;
     gb:language "English" ;
     gb:publisher "Tor Fantasy" ;
@@ -131,51 +145,13 @@ rdf:b014
 
 rdf:b015
     gb:title "Ask A Footballer" ;
+    gb:category "Biography" ;
     gb:author "James Milner" ;
     gb:language "English" ;
     gb:publisher "Hachette UK" ;
     gb:published_date "Oct 31, 2019" ;
     gb:page_count "320" ;
     gb:price "98.42" .
-
-#Category
-rdf:cat01 gb:category "Fiction" .
-rdf:cat02 gb:category "Mystery" .
-rdf:cat03 gb:category "Games" .
-rdf:cat04 gb:category "General" .
-rdf:cat05 gb:category "Biography" .
-rdf:cat06 gb:category "Sport" .
-rdf:cat07 gb:category "Epic" .
-rdf:cat08 gb:category "Comics" .
-rdf:cat09 gb:category "Mythical" .
-rdf:cat10 gb:category "Fantasy" .
-
-#Book Category
-rdf:b001 gb:isCategory rdf:cat01 .
-rdf:b002 gb:isCategory rdf:cat01 .
-rdf:b002 gb:isCategory rdf:cat02 .
-rdf:b002 gb:isCategory rdf:cat04 .
-rdf:b003 gb:isCategory rdf:cat03 .
-rdf:b004 gb:isCategory rdf:cat02 .
-rdf:b005 gb:isCategory rdf:cat01 .
-rdf:b005 gb:isCategory rdf:cat10 .
-rdf:b006 gb:isCategory rdf:cat10 .
-rdf:b007 gb:isCategory rdf:cat01 .
-rdf:b008 gb:isCategory rdf:cat01 .
-rdf:b008 gb:isCategory rdf:cat10 .
-rdf:b008 gb:isCategory rdf:cat07 .
-rdf:b009 gb:isCategory rdf:cat03 .
-rdf:b010 gb:isCategory rdf:cat05 .
-rdf:b011 gb:isCategory rdf:cat01 .
-rdf:b011 gb:isCategory rdf:cat10 .
-rdf:b011 gb:isCategory rdf:cat09 .
-rdf:b012 gb:isCategory rdf:cat04 .
-rdf:b013 gb:isCategory rdf:cat08 .
-rdf:b014 gb:isCategory rdf:cat01 .
-rdf:b014 gb:isCategory rdf:cat10 .
-rdf:b014 gb:isCategory rdf:cat07 .
-rdf:b015 gb:isCategory rdf:cat05 .
-rdf:b015 gb:isCategory rdf:cat06 .
 
 
 
