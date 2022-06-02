@@ -5,6 +5,9 @@ import axios from 'axios';
 import qs from 'qs';
 import './../LandingPage.css';
 import Content from '../CardCompt';
+import Img1 from "./../../assets/image/v1.png";
+import Img2 from "./../../assets/image/v2.png";
+import { Footer } from '../Footer';
 
 //fungsi untul effect scroll
 const scrollToSection = (flag) => {
@@ -66,8 +69,8 @@ function FilterSearch() {
                     FILTER contains(lcase(str(?language)), lcase(str("${
                       value.language ? value.language : ""
                     }")))
-                    FILTER contains(lcase(str(?price)), lcase(str("${
-                      value.price ? value.price : ""
+                    FILTER contains(lcase(str(?author)), lcase(str("${
+                      value.author ? value.author : ""
                     }")))
             } ORDER BY ASC (?title)`,
         };
@@ -127,10 +130,10 @@ function FilterSearch() {
         language: event.target.value,
       });
     };
-    const handleChangePrice = (event) => {
+    const handleChangeAuthor = (event) => {
       setValue({
         ...value,
-        price: event.target.value,
+        author: event.target.value,
       });
     };
     const content = value.codes.map((code) => (
@@ -148,25 +151,32 @@ function FilterSearch() {
     ));
     function showKeyword () {
       return([
-        value.title !== "" ? (<h3 className='keyword-text'>"Title : " {value.title} "</h3>):(<></>),
-        value.category !== "" ? (<h3 className='keyword-text'>"Category : " {value.category} "</h3>):(<></>),
-        value.language !== "" ? (<h3 className='keyword-text'>"Language : " {value.language} "</h3>):(<></>),
-        value.price !== "" ? (<h3 className='keyword-text'>"Price : $" {value.price} "</h3>):(<></>),
+        value.title !== "" ? (<h3 className='keyword-text'>Title : "{value.title}"</h3>):(<></>),
+        value.category !== "" ? (<h3 className='keyword-text'>Category : "{value.category}" </h3>):(<></>),
+        value.author !== "" ? (<h3 className='keyword-text'>Author : "{value.author}" </h3>):(<></>),
+        value.language !== "" ? (<h3 className='keyword-text'>Language : "{value.language}" </h3>):(<></>),
       ])
     }
   return (
-    <div className="large-container">
+    <>
+      <div className="large-container">
         <div className="container">
             <div className="home" id="home">
                 <h1 className='title'>Advanced search to find complete information about books with the help of semantic technology</h1>
-                <div className="filter">
+                <div className="filterAdv">
                     <input                      
                     type="text"
-                    className="inputFilter"
+                    className="inputFilter2"
                     placeholder='Title'
                     setValue={value.title}
                     onChange={handleChangeTitle}/>
                     <div className="grid">
+                     <input                      
+                    type="text"
+                    className="inputFilterAuthor"
+                    placeholder='Author'
+                    setValue={value.author}
+                    onChange={handleChangeAuthor}/>
                     <select
                     className="dropdown-select"
                     setValue={value.category}
@@ -193,8 +203,7 @@ function FilterSearch() {
                       <option value="Other">Other</option>
                     </select>
                     </div>
-                </div>
-                <div className="button-wrapper-get-all">
+                    <div className="button-wrapper-get-all">
                       <button        
                         type="button"
                         value="Search"
@@ -203,6 +212,7 @@ function FilterSearch() {
                       <Link to="/" className='advSearch'>
                             <button className='btn-adv-src'>Go to basic search</button>
                       </Link>    
+                </div>
                 </div>
             </div>
         </div>
@@ -221,12 +231,18 @@ function FilterSearch() {
                                             {
                                                 searching === false ? (
                                                     <>
-                                                        <p>Please enter a keyword for search a book</p>
+                                                    <p className='warn'>Please enter a keyword for search a book</p>
+                                                        <div className="img-wrap">
+                                                            <img src={Img1} alt="" />
+                                                        </div>
                                                     </>
                                                 ) : (
                                                     <>
                                                         <h3 className="result-data">Keyword : "{value.input}"</h3>
-                                                        <p className="text-not-found">Sorry,Book not available!</p>
+                                                        <p className='warn'>Sorry, Book not available!</p>
+                                                        <div className="img-wrap">
+                                                            <img src={Img2} alt="" />
+                                                        </div>
                                                     </>
                                                 )
                                             }
@@ -246,6 +262,8 @@ function FilterSearch() {
                 </div>
             </div>
     </div>
+    <Footer />
+    </>
   )
 }
 

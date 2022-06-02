@@ -5,6 +5,9 @@ import axios from 'axios';
 import qs from 'qs';
 import './../LandingPage.css';
 import Content from './../CardCompt';
+import { Footer } from '../Footer';
+import Img1 from "./../../assets/image/v1.png";
+import Img2 from "./../../assets/image/v2.png";
 
 //fungsi untul effect scroll
 const scrollToSection = (flag) => {
@@ -190,7 +193,8 @@ function Home() {
         />
     ));
     return ( 
-    <div className="large-container">
+    <>
+        <div className="large-container">
         <div className="container">
             <div className="home" id="home">
                 <h1 className='title'>Find complete information about books with the help of semantic technology</h1>
@@ -218,7 +222,7 @@ function Home() {
                         onClick={getAllData} 
                         className='btn-get-all'>Get all data</button>
                         <Link to="/advanced" className='advSearch'>
-                            <button className='btn-adv-src'>Go to advanced search</button>
+                            <button className='btn-adv-src'>Go to smart search</button>
                         </Link>    
                     </div>
                 </div>
@@ -239,12 +243,18 @@ function Home() {
                                             {
                                                 searching === false ? (
                                                     <>
-                                                        <p>Please enter a keyword for search a book</p>
+                                                        <p className='warn'>Please enter a keyword for search a book</p>
+                                                        <div className="img-wrap">
+                                                            <img src={Img1} alt="" />
+                                                        </div>
                                                     </>
                                                 ) : (
                                                     <>
                                                         <h3 className="result-data">Keyword : "{value.input}"</h3>
-                                                        <p className="text-not-found">Sorry,Book not available!</p>
+                                                        <p className='warn'>Sorry,Book not available!</p>
+                                                        <div className="img-wrap">
+                                                            <img src={Img2} alt="" />
+                                                        </div>
                                                     </>
                                                 )
                                             }
@@ -267,6 +277,8 @@ function Home() {
                 </div>
             </div>
     </div>
+    <Footer />
+    </>
     )
 }
 
